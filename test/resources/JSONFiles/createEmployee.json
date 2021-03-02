@@ -1,0 +1,9 @@
+{
+  "emp_firstname" : "Alma",
+  "emp_lastname" : "Aldenia",
+  "emp_middle_name" : "Tina",
+  "emp_gender" : "F",
+  "emp_birthday": "2021-02-19",
+  "emp_status": "Employee",
+  "emp_job_title": "IT Analyst"
+}
