@@ -13,9 +13,9 @@ public class apiConstants {
     public static final String PARTIALLY_UPDATE_EMPLOYEE_URI=BaseURI+"/updatePartialEmplyeesDetails.php";
     public static final String GET_EMPLOYEE_STATUS_URI=BaseURI+"/employeeStatus.php";
 
-
     public static final String Header_Content_type="Content-type";
     public static final String Content_type="application/json";
 
     public static final String Header_Authorization="Authorization";
+    public static final String CREATE_EMPLOYEE_JSON=System.getProperty("user.dir")+"/src/test/resources/JsonData/createUser.json";
 }

@@ -1,5 +1,9 @@
 package com.hrms.APITesting;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.hrms.APITesting.generateTokenSteps;
 import com.hrms.utils.apiConstants;
 import com.hrms.utils.apiPayloadConstants;
@@ -8,6 +12,10 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import net.minidev.json.JSONObject;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -25,10 +33,32 @@ public class apiTestingFinalSteps {
 
     @Given("a request is prepared to create an employee")
     public void a_request_is_prepared_to_create_an_employee() {
-        //preparing request to create Employee
-        request=given().header(apiConstants.Header_Content_type,apiConstants.Content_type)
-                .header(apiConstants.Header_Authorization, generateTokenSteps.token)
-                .body(apiPayloadConstants.createEmployeeBody());
+//        //preparing request to create Employee
+//        request=given().header(apiConstants.Header_Content_type,apiConstants.Content_type)
+//                .header(apiConstants.Header_Authorization, generateTokenSteps.token)
+//                .body(apiPayloadConstants.createEmployeeBody());
+
+        File input=new File("C:\\Users\\Work\\eclipse-workspace\\CucumberFrameWork\\src\\test\\resources\\JsonData\\JsonData\\createUser.json");
+        JsonObject CreateUserData=null;
+        try {
+            //parsing the input file
+            JsonElement fileElement= JsonParser.parseReader(new FileReader(input));
+            CreateUserData = fileElement.getAsJsonObject();
+            //Acess the key message
+            JsonElement Message = CreateUserData.get("Message");
+            JsonElement Employee = CreateUserData.get("Employee");
+            JsonArray Employee_details = Employee.getAsJsonArray();
+            JsonElement Employee1_details = Employee_details.get(0);
+            JsonObject Employee1_Object = Employee1_details.getAsJsonObject();
+
+            System.out.println(Employee1_Object.get("emp_firstname"));
+        }
+
+
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
     }
     @When("a POST call is made to create an Employee")
@@ -102,7 +132,7 @@ public class apiTestingFinalSteps {
         assertThat(emp_first_name,equalTo("Alma"));
         assertThat(emp_last_name,equalTo("Aldenia"));
         assertThat(emp_middle_name,equalTo("Tina"));
-        assertThat(emp_birthday,equalTo("2021-02-19"));
+        assertThat(emp_birthday,equalTo("2021-02-19 "));
         assertThat(emp_gender,equalTo("Female"));
         assertThat(emp_job_title,equalTo("IT Analyst"));
         assertThat(emp_status,equalTo("Employee"));
@@ -115,8 +145,8 @@ public class apiTestingFinalSteps {
         updated_employee_middle_name="updated middle name";
         JSONObject payload =new JSONObject();
         payload.put("employee_id",employeeID);
-        payload.put("emp_firstname","moazzam");
-        payload.put("emp_lastname","sadiq");
+        payload.put("emp_firstname","Alma");
+        payload.put("emp_lastname","Aldenia");
         payload.put("emp_middle_name",updated_employee_middle_name);
         payload.put("emp_gender","M");
         payload.put("emp_birthday","2021-02-27");
@@ -278,6 +308,9 @@ public class apiTestingFinalSteps {
 //
 //            String allEmployeeIDs=js.getString("Employees["+i+"].employee_id");
 //            System.out.println(allEmployeeIDs);
+
+        //Get Employee first name of each employee in syntax HRMS
+
     }
 
 

@@ -197,13 +197,23 @@ public class CommonMethods extends PageInitializer {
             }
         }
     }
-
-    static String jsonFile;
-    public static String readJson(String fileName){
-
-        try{
-            jsonFile=new String(Files.readAllBytes(Paths.get(fileName)));
-        } catch (IOException e) {
+// reading data from jsonData file and sending it directly to our request
+//    static String jsonFile;
+//    public static String readJson(String fileName){
+//
+//        try{
+//            jsonFile=new String(Files.readAllBytes(Paths.get(fileName)));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return jsonFile;
+//    }
+static String jsonFile;
+    public static String readJson(String FileName){
+        try {
+            jsonFile = new String (Files.readAllBytes(Paths.get(FileName)));
+        }
+        catch (IOException e){
             e.printStackTrace();
         }
         return jsonFile;
