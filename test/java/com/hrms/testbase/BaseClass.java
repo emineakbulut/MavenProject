@@ -32,7 +32,7 @@ public class BaseClass {
                 driver = new FirefoxDriver();
                 break;
             default:
-                throw new RuntimeException("Ivalid browser");
+                throw new RuntimeException("Invalid browser");
         }
         driver.get(ConfigsReader.getPropertyValue("url"));
         //driver.manage().window().maximize();

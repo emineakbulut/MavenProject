@@ -37,7 +37,7 @@ public class apiPayloadConstants {
             //System.out.println(CreateUserData);//we got json obj from the file
           //  String employee_firstname=CreateUserData.get("emp_firstname").getAsString();
             //System.out.println("The employee first name is "+employee_firstname);//printed first name
-            JsonElement employee_firstname=CreateUserData.get("emp_firstname");
+           // JsonElement employee_firstname=CreateUserData.get("emp_firstname");
         }
 
         catch (FileNotFoundException e) {

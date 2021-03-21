@@ -12,6 +12,7 @@ import static com.hrms.utils.CommonMethods.sendText;
 
 public class AddEmployeePage extends BaseClass {
 
+
     @FindBy(id = "firstName")
     public WebElement firstNameTextBox;
 
